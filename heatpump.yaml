@@ -1,6 +1,10 @@
 external_components:
-  - source: github://allexkey/esphome-ecodan-heatpump@probe-thw6-thw7
+  - source:
+      type: git
+      url: https://github.com/allexkey/esphome-ecodan-heatpump
+      ref: probe-thw6-thw7
     components: [ ecodan ]
+    refresh: 0s
 
 logger:
   baud_rate: 0
