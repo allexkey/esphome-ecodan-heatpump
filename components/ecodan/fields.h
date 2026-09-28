@@ -96,31 +96,15 @@ DEFINE_FIELD(holiday_mode, 0x28, 9, VarType_ON_OFF);
 DEFINE_FIELD(power_state, 0x26, 8, VarType_ON_OFF);
 DEFINE_FIELD(force_dhw, 0x05, 12, VarType_ON_OFF);
 
-// --- DIAGNOSTIC PROBE (temporary) ---
-// Command 0x0e is documented in the CN105 protocol decode as
-// "Several Unknown Temperatures". It is the leading candidate for
-// THW6 (Zone1 flow water temp) / THW7 (Zone1 return water temp), by
-// analogy with 0x0c (water_feed/water_return) and 0x0d (boiler flow/
-// return), which both use the same 2-byte-temperature layout.
-// Sweep every possible 2-byte offset in the payload (index 6..19) and
-// compare the live values against the FTC6 "Thermistor adjustment"
-// screen. Remove this block once the correct offset(s) are confirmed
-// and replace it with permanently named fields
-// (zone1_flow_water_temperature / zone1_return_water_temperature).
-DEFINE_FIELD(probe_0e_06, 0x0e, 6, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_07, 0x0e, 7, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_08, 0x0e, 8, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_09, 0x0e, 9, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_10, 0x0e, 10, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_11, 0x0e, 11, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_12, 0x0e, 12, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_13, 0x0e, 13, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_14, 0x0e, 14, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_15, 0x0e, 15, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_16, 0x0e, 16, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_17, 0x0e, 17, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_18, 0x0e, 18, VarType_TEMPERATURE);
-DEFINE_FIELD(probe_0e_19, 0x0e, 19, VarType_TEMPERATURE);
+// Command 0x0d ("Thermistors 1") carries the Zone1/Zone2 flow and
+// return water thermistors, per the protocol documentation at
+// https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/protocol.md
+// -- confirmed against command 0x0e ("Thermistors 2", boiler
+// THWB1/THWB2), which was empirically verified on a live FTC6 system
+// against the "Thermistor adjustment" panel screen (THWB1 tracked a
+// live boiler-flow rise from 25C to 44C exactly).
+DEFINE_FIELD(zone1_flow_water_temperature, 0x0d, 6, VarType_TEMPERATURE);
+DEFINE_FIELD(zone1_return_water_temperature, 0x0d, 9, VarType_TEMPERATURE);
 
 } // namespace fields
 } // namespace ecodan
