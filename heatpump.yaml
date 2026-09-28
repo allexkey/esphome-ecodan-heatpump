@@ -130,6 +130,10 @@ sensor:
       name: Zone 1 Flow water temperature
     zone1_return_water_temperature:
       name: Zone 1 Return water temperature
+    zone2_flow_water_temperature:
+      name: Zone 2 Flow water temperature
+    zone2_return_water_temperature:
+      name: Zone 2 Return water temperature
 
   # Calculated CoP (yesterday) as ratio of production/consumption
   - platform: template

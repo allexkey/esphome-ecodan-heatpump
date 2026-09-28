@@ -106,6 +106,15 @@ DEFINE_FIELD(force_dhw, 0x05, 12, VarType_ON_OFF);
 DEFINE_FIELD(zone1_flow_water_temperature, 0x0d, 6, VarType_TEMPERATURE);
 DEFINE_FIELD(zone1_return_water_temperature, 0x0d, 9, VarType_TEMPERATURE);
 
+// Zone2 flow/return water thermistors (THW8/THW9), same command 0x0d,
+// following the documented offset pattern (relative offset + 5).
+// NOTE: sourced from the same protocol.md documentation as THW6/THW7,
+// but NOT live-validated -- the test system has no Zone 2 water
+// circuit installed (THW8/THW9 read blank on the FTC6 panel), so
+// there was no live value to compare against.
+DEFINE_FIELD(zone2_flow_water_temperature, 0x0d, 12, VarType_TEMPERATURE);
+DEFINE_FIELD(zone2_return_water_temperature, 0x0d, 15, VarType_TEMPERATURE);
+
 } // namespace fields
 } // namespace ecodan
 
