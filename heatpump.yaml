@@ -122,6 +122,39 @@ sensor:
       id: energy_dhw_prod_yesterday
     energy_consumed_increasing:
       name: Total energy consumed
+    # --- DIAGNOSTIC PROBE (temporary): sweep of command 0x0e, looking for
+    # THW6 (Zone1 flow water temp) / THW7 (Zone1 return water temp).
+    # Compare live values below against the FTC6 "Thermistor adjustment"
+    # screen readings for THW6/THW7. Remove this whole block (and the
+    # matching entries in fields.h / sensor.py) once identified.
+    probe_0e_06:
+      name: "PROBE 0x0e offset 6"
+    probe_0e_07:
+      name: "PROBE 0x0e offset 7"
+    probe_0e_08:
+      name: "PROBE 0x0e offset 8"
+    probe_0e_09:
+      name: "PROBE 0x0e offset 9"
+    probe_0e_10:
+      name: "PROBE 0x0e offset 10"
+    probe_0e_11:
+      name: "PROBE 0x0e offset 11"
+    probe_0e_12:
+      name: "PROBE 0x0e offset 12"
+    probe_0e_13:
+      name: "PROBE 0x0e offset 13"
+    probe_0e_14:
+      name: "PROBE 0x0e offset 14"
+    probe_0e_15:
+      name: "PROBE 0x0e offset 15"
+    probe_0e_16:
+      name: "PROBE 0x0e offset 16"
+    probe_0e_17:
+      name: "PROBE 0x0e offset 17"
+    probe_0e_18:
+      name: "PROBE 0x0e offset 18"
+    probe_0e_19:
+      name: "PROBE 0x0e offset 19"
 
   # Calculated CoP (yesterday) as ratio of production/consumption
   - platform: template
