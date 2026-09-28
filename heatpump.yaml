@@ -1,5 +1,5 @@
 external_components:
-  - source: github://tobias-93/esphome-ecodan-heatpump@future-climate-2zone
+  - source: github://allexkey/esphome-ecodan-heatpump@probe-thw6-thw7
     components: [ ecodan ]
 
 logger:
